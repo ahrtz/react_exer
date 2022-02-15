@@ -1,3 +1,11 @@
+// 여기부터 커스텀 
+$primary:red;
+
+// 커스텀 end  다른파일로 빼도됨
+
+@import "~bootstrap/scss/bootstrap";
+
+
 .App {
   text-align: center;
 }

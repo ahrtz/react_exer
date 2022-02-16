@@ -10,7 +10,7 @@ const useHorizontalScroll=() =>{
     useEffect(()=>{
       const el = elref.current;    
         if(el) {
-            
+            console.log(el.offsetTop)
             const onWheel = (e:WheelEvent) => {
                 if (e.deltaY ===0) {return;}
                 

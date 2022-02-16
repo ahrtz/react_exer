@@ -1,4 +1,4 @@
-import  { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const useVerticalScroll = () => {
         
@@ -11,6 +11,7 @@ const useVerticalScroll = () => {
 
 
         if (el1){
+            
             const onWheelVertical = (e:WheelEvent) => {
                 
                 e.preventDefault();
@@ -20,8 +21,13 @@ const useVerticalScroll = () => {
                 }
                 // 현재 페이지 확인
                 const present = Math.floor(window.scrollY / window.innerHeight)
-                
-                
+                // 단순 첫 페이지용 
+                console.log()
+                if(present === 0 && (e.clientY>=271 && e.clientY <= 571)){
+                    return;
+                }
+
+                //document.documentElement.scrollTop 페이지 최상단위치
                 window.scrollTo({
                     top: (present+Math.floor(e.deltaY/100))*window.innerHeight,
                     left:0,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollCard from './components/ScrollCard';
 
 import './App.scss'
@@ -10,14 +10,19 @@ import  useVerticalScroll  from './components/ScrollV';
 
 
 
-
 function App() {
-  const verticalScroll = useVerticalScroll();
+  const [test,setTest] = useState(0);
+
+  const gettext = (text:number) => {
+    setTest(text);
+  }
+
+  const verticalScroll = useVerticalScroll(test);
   return (
     <div className="App"  ref={verticalScroll}>
       
           <div className="App-header" >
-            <ScrollCard/>
+            <ScrollCard setTest = {gettext}/>
 
             <p>
               Edit <code>src/App.tsx</code> and save to reload.

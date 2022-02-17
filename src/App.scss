@@ -4,10 +4,6 @@
   overflow-y: auto;  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
 
 .App-header {
@@ -20,6 +16,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  
 }
 
 .App-link {
@@ -28,9 +25,7 @@
 
 
 body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  
   overflow-y: hidden;
 }
 

@@ -1,16 +1,30 @@
-import  { useEffect, useRef } from "react";
+import  { useEffect, useRef, useState } from "react";
 
+interface proptype {
+    setTest:(test:number) => void
+  }
 
-
-const useHorizontalScroll=() =>{
+const useHorizontalScroll=(props:proptype) =>{
+    const [windowSize,setWindowSize]  = useState({
+        width:window.innerWidth,
+        height:window.innerHeight,
+    })
     
+    const handleResize = () => {
+        setWindowSize({
+            width:window.innerWidth,
+            height:window.innerHeight,
+        })
+    }
+
     const elref = useRef<HTMLDivElement>(null);
     
     
     useEffect(()=>{
       const el = elref.current;    
         if(el) {
-            console.log(el.offsetTop)
+            
+            props.setTest(el.offsetTop);
             const onWheel = (e:WheelEvent) => {
                 if (e.deltaY ===0) {return;}
                 
@@ -24,10 +38,15 @@ const useHorizontalScroll=() =>{
   
             };
             el.addEventListener("wheel",onWheel);
-            return() => el.removeEventListener("wheel",onWheel);
+            window.addEventListener("resize",handleResize)
+            return() => {
+                el.removeEventListener("wheel",onWheel);
+                window.removeEventListener("resize",handleResize)
+
+            }
         }
-    },[]);
-    return elref;
+    },[windowSize]);
+    return {elref};
     }
 
     

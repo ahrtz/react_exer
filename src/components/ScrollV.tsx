@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
-const useVerticalScroll = () => {
+const useVerticalScroll = (height:number) => {
         
     const elref1 = useRef<HTMLDivElement>(null);
     // const [pageNum,setPageNum] = useState(0);
@@ -23,10 +23,13 @@ const useVerticalScroll = () => {
                 const present = Math.floor(window.scrollY / window.innerHeight)
                 // 단순 첫 페이지용 
                 // 271을 확인하는건 현재 scroll H 함수에 존재함 
-                if(present === 0 && (e.clientY>=271 && e.clientY <= 571)){
+                console.log("clientY :"+e.clientY + "present : " + present)
+                console.log(height)
+                console.log(( e.clientY <= height+300))
+                console.log(e.clientY>=height )
+                if(present === 0 && (e.clientY>=height && e.clientY <= height+300)){
                     return;
                 }
-
                 
                 window.scrollTo({
                     top: (present+Math.floor(e.deltaY/100))*window.innerHeight,
@@ -38,7 +41,7 @@ const useVerticalScroll = () => {
             el1.addEventListener("wheel",onWheelVertical);
             return() => el1.removeEventListener("wheel",onWheelVertical);
         }
-    },[])
+    },[height])
     
     return elref1;
 }

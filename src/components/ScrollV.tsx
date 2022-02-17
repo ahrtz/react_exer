@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react'
 const useVerticalScroll = (height:number) => {
         
     const elref1 = useRef<HTMLDivElement>(null);
-    // const [pageNum,setPageNum] = useState(0);
+    
     
     
     useEffect(() => {
